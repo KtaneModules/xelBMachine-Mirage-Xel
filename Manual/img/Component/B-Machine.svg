@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="B-Machine.svg"
+   id="svg6"
+   version="1.1"
+   fill="none"
+   viewBox="0.0 0.0 348.0 348.0">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     inkscape:current-layer="svg6"
+     inkscape:window-maximized="1"
+     inkscape:window-y="-8"
+     inkscape:window-x="-8"
+     inkscape:cy="174"
+     inkscape:cx="174"
+     inkscape:zoom="2.4425287"
+     showgrid="false"
+     id="namedview8"
+     inkscape:window-height="1017"
+     inkscape:window-width="1920"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <path
+     style="fill:#000000;fill-opacity:1"
+     id="path2"
+     stroke="#000"
+     stroke-width="2"
+     d="M5.079 5.776h336.913v337.67H5.08z" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-opacity:1"
+     id="path4"
+     stroke="#000"
+     stroke-width="2"
+     d="M282.734 40.554c0-8.376 6.966-15.165 15.56-15.165 4.126 0 8.084 1.597 11.001 4.441 2.918 2.844 4.558 6.702 4.558 10.724 0 8.376-6.966 15.165-15.56 15.165-8.593 0-15.559-6.79-15.559-15.165z" />
+  <g
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;line-height:1;font-family:'SH Pinscher';-inkscape-font-specification:'SH Pinscher, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:1px;word-spacing:1px;fill:#ffffff;fill-opacity:1"
+     id="text839"
+     aria-label="1. →">
+    <path
+       id="path866"
+       d="M 126.61647,131.21412 V 92.814122 h -5.12 v 5.12 h -5.12 v 5.119998 h 5.12 v 28.16 h -5.12 v 5.12 h 14.72 v -5.12 z" />
+    <path
+       id="path868"
+       d="m 138.86647,136.33412 h 6.4 v -6.4 h -6.4 z" />
+    <path
+       id="path870"
+       d="m 224.08147,110.73412 h -3.84 v -3.84 h -3.84 v -3.84 h -3.84 v -3.839998 h -3.84 v -3.84 h -5.12 v 5.119998 h 3.84 v 3.84 h 3.84 v 3.84 h 3.84 v 2.56 h -34.56 v 5.12 h 34.56 v 2.56 h -3.84 v 3.84 h -3.84 v 3.84 h -3.84 v 5.12 h 5.12 v -3.84 h 3.84 v -3.84 h 3.84 v -3.84 h 3.84 v -3.84 h 3.84 z" />
+  </g>
+  <rect
+     y="218.62589"
+     x="108.90353"
+     height="37.25647"
+     width="36.847057"
+     id="rect841"
+     style="opacity:0.998;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:2.444;stroke-opacity:1" />
+  <text
+     id="text845"
+     y="231.72707"
+     x="99.896469"
+     style="font-size:64px;line-height:1;font-family:'Baybayin Lopez';-inkscape-font-specification:'Baybayin Lopez';letter-spacing:1px;word-spacing:1px"
+     xml:space="preserve"><tspan
+       y="231.72707"
+       x="99.896469"
+       id="tspan843"
+       sodipodi:role="line">8</tspan></text>
+  <rect
+     style="opacity:0.998;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:2.444;stroke-opacity:1"
+     id="rect841-2"
+     width="36.847057"
+     height="37.25647"
+     x="187.10118"
+     y="219.64941" />
+  <g
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;line-height:1;font-family:'SH Pinscher';-inkscape-font-specification:'SH Pinscher, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:1px;word-spacing:1px;fill:#ffffff;fill-opacity:1"
+     id="text864"
+     aria-label="*">
+    <path
+       id="path873"
+       d="m 197.84471,228.67766 v 5.12 h 5.12 v -5.12 z m 15.36,0 h -5.12 v 5.12 h 5.12 z m 2.56,11.52 v -3.84 h -7.68 v -2.56 h -5.12 v 2.56 h -7.68 v 3.84 h 7.68 v 2.56 h 5.12 v -2.56 z m -17.92,7.68 h 5.12 v -5.12 h -5.12 z m 15.36,0 v -5.12 h -5.12 v 5.12 z" />
+  </g>
+</svg>

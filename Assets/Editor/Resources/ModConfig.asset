@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615501dbe4f3fe94fbf4b564abb10237, type: 3}
+  m_Name: ModConfig
+  m_EditorClassIdentifier: 
+  id: xelBMachine
+  title: B-Machine
+  author: PANOPTES
+  description: "This looks like one of those modules where you exceucte a set of commands
+    in a weird programming language, except this one is a knocko-\r\nWell, the B-Machine
+    predates Brainf*** by 40 or so years, so I guess the other one is a knockoff.
+    \n\nB-Machine regular module by PANOPTES. Uses some code from Brainf---, created
+    by Short-C1rcut.\n\nModule ID: xelBMachine\n\nTP Supported!"
+  version: Beta
+  outputFolder: build
+  previewImage: {fileID: 2800000, guid: 8104d6813f35d154980443ab29b52974, type: 3}
