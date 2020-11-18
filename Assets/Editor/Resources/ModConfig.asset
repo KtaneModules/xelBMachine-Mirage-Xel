@@ -19,6 +19,6 @@ MonoBehaviour:
     predates Brainf*** by 40 or so years, so I guess the other one is a knockoff.
     \n\nB-Machine regular module by PANOPTES. Uses some code from Brainf---, created
     by Short-C1rcut.\n\nModule ID: xelBMachine\n\nTP Supported!"
-  version: Beta
+  version: Day One Patch
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 8104d6813f35d154980443ab29b52974, type: 3}

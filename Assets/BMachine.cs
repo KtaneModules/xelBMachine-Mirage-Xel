@@ -59,7 +59,7 @@ public class BMachine : MonoBehaviour
         for (int j = 0; j < startingTime; j++)
         {
 
-            List<string> symbols = new List<string> { "→", "←", "*" };
+            List<string> symbols = new List<string> { "→", "←", "*"};
 
 
             if (program[j] != null)
@@ -70,7 +70,7 @@ public class BMachine : MonoBehaviour
 
             if (j != 0)
             {
-                if (program[j - 1] == "*")
+                if (program[j - 1] == "*" )
                 {
                     symbols.Remove("*");
                 }
@@ -128,9 +128,8 @@ public class BMachine : MonoBehaviour
             }
             else if (program[i][0] == 'C')
             {
-                Debug.Log(program[i]);
                 loopstart = int.Parse(program[i].Remove(0, 1));
-                if ((tape[pointer] == '*') | (looptimes == 5))
+                if ((tape[pointer] == ' ') | (looptimes == 5))
                 {
                     Debug.LogFormat("[B-Machine #{0}] End of loop.", moduleId);
                     looptimes = 0;
@@ -160,6 +159,7 @@ public class BMachine : MonoBehaviour
                     sound.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, transform);
                     solved = true;
                     module.HandlePass();
+                    command.text = "SOLVED";
                 }
             }
             else
