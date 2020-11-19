@@ -33,6 +33,7 @@ public class BMachine : MonoBehaviour
     void Activate()
     {
         startingTime = (int)bomb.GetTime() / 60;
+        if (startingTime == 0) startingTime = 10;
         program = new string[startingTime];
         tape = new StringBuilder(" ", 5 * startingTime);
         GenerateProgram();
@@ -67,9 +68,17 @@ public class BMachine : MonoBehaviour
 
                 continue;
             }
+            if (j != program.Count() - 1)
+            {
+                if (program[j + 1] != null)
+                {
 
+                    symbols.Remove("*");
+                }
+            }
             if (j != 0)
             {
+                
                 if (program[j - 1] == "*" )
                 {
                     symbols.Remove("*");
