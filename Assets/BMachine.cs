@@ -214,7 +214,7 @@ public class BMachine : MonoBehaviour
         }
         for (int i = 0; i < commandArray[2].Length; i++)
         {
-            for (int j = 0; j < 6; j++)
+            for (int j = 0; j < 2; j++)
             {
                 if (command[i] == validcmds[j])
                 {
@@ -222,7 +222,9 @@ public class BMachine : MonoBehaviour
                     yield return new WaitForSeconds(1f);
                     buttons[j].OnInteract();
                 }
+                yield break;
             }
+            
         }
     }
 }
