@@ -204,7 +204,7 @@ public class BMachine : MonoBehaviour
             yield return "sendtochaterror @{0}, invalid command.";
             yield break;
         }
-        for (int i = 0; i < commandArray[2].Length; i++)
+        for (int i = 0; i < commandArray[1].Length; i++)
         {
             if (!validcmds.Contains(commandArray[2][i]))
             {
@@ -212,7 +212,7 @@ public class BMachine : MonoBehaviour
                 yield break;
             }
         }
-        for (int i = 0; i < commandArray[2].Length; i++)
+        for (int i = 0; i < commandArray[1].Length; i++)
         {
             for (int j = 0; j < 2; j++)
             {
@@ -222,9 +222,9 @@ public class BMachine : MonoBehaviour
                     yield return new WaitForSeconds(1f);
                     buttons[j].OnInteract();
                 }
-                yield break;
+                
             }
-            
         }
+        yield break;
     }
 }
