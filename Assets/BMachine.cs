@@ -15,12 +15,12 @@ public class BMachine : MonoBehaviour
     string[] program;
     int startingTime;
     int inputCounter;
+    bool recovering;
     public KMBombModule module;
     public KMAudio sound;
     public KMBombInfo bomb;
     int moduleId;
     static int moduleIdCounter = 1;
-    bool solved;
     // Use this for initialization
     void Awake()
     {
@@ -137,7 +137,7 @@ public class BMachine : MonoBehaviour
             }
             else if (program[i][0] == 'C')
             {
-                loopstart = int.Parse(program[i].Remove(0, 1));
+                loopstart =  int.Parse(program[i].Remove(0, 1)) - 2;
                 if ((tape[pointer] == ' ') | (looptimes == 5))
                 {
                     Debug.LogFormat("[B-Machine #{0}] End of loop.", moduleId);
@@ -156,17 +156,17 @@ public class BMachine : MonoBehaviour
     }
     void PressButton(KMSelectable button, char input)
     {
-        if (!solved && command.text == "READY")
-        {
-            button.AddInteractionPunch();
-            sound.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, transform);
+        button.AddInteractionPunch();
+        sound.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, transform);
+        StartCoroutine(AnimKeys(button));
+        if (command.text == "READY")
+        {          
             if (tape[inputCounter] == input)
             {
                 inputCounter++;
                 if (inputCounter == tape.Length)
                 {
-                    sound.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, transform);
-                    solved = true;
+                    sound.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.CorrectChime, transform);
                     module.HandlePass();
                     command.text = "SOLVED";
                 }
@@ -175,13 +175,49 @@ public class BMachine : MonoBehaviour
             {
                 module.HandleStrike();
                 inputCounter = 0;
+                command.text = "RECOVER?";        
             }
         }
+        else if (command.text == "RECOVER?")
+        {
+            if (input == '*')
+            {
+                recovering = true;
+                command.text = program[inputCounter];
+            }
+            else if (input == ' ') command.text = "READY";
+        }
+        else if (recovering)
+        {
+           if (input == '*')
+            {
+                inputCounter++;
+                if (inputCounter == program.Length)
+                {
+                    inputCounter = 0;
+                    command.text = "READY";
+                    recovering = false;
+                }
+                else command.text = program[inputCounter];
+            }
+            else if (input == ' ')
+            {
+                inputCounter--;
+                if (inputCounter == -1)
+                {
+                    inputCounter = 0;
+                    command.text = "READY";
+                    recovering = false;
+                }
+                command.text = program[inputCounter];
+            }
+        }
+           
     }
     IEnumerator ShowProgram()
     {
         int tick = 0;
-        while (tick < startingTime - 1)
+        while (tick < startingTime)
         {
             command.text = program[tick];
             sound.PlaySoundAtTransform("More Cowbell", transform);
@@ -191,14 +227,91 @@ public class BMachine : MonoBehaviour
         command.text = "READY";
         yield break;
     }
+   IEnumerator AnimKeys(KMSelectable button)
+    {
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                button.transform.localPosition += new Vector3(0f, -0.001f, 0f);
+                yield return new WaitForSeconds(0.02f);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                button.transform.localPosition += new Vector3(0f, 0.001f, 0f);
+                yield return new WaitForSeconds(0.02f);
+            }
+        }
+    }
 #pragma warning disable 414
-    private string TwitchHelpMessage = "use e.g. '!{0} submit 110110' to submit the tape as binary with 1 = marked and 0 = unmarked.";
+    private string TwitchHelpMessage = "Use e.g. '!{0} submit 110110' to submit the tape as binary with 1 = marked and 0 = unmarked. Stage Recovery: Use '!{0} cycle' to cycle through the stages in order. Use '!{0} show <number>' to go directly to that stage. Use '!{0} abort' to end the stage recovery.";
 #pragma warning restore 414
     IEnumerator ProcessTwitchCommand(string command)
     {
-        command = command.ToLowerInvariant();
+        command = command.ToLowerInvariant().Trim();
         string validcmds = "01";
         string[] commandArray = command.Split(' ');
+        if (this.command.text == "RECOVER?")
+        {
+            if (command == "cycle")
+            {
+                yield return null;
+                buttons[1].OnInteract();
+                while (recovering)
+                {
+                    yield return new WaitForSeconds(2f);
+                    buttons[1].OnInteract();
+                }
+                yield break;
+            }
+            if (command == "abort")
+            {
+                yield return null;
+                buttons[0].OnInteract();
+                yield break;
+            }
+            int stage;
+            if (commandArray.Length == 2 && commandArray[0] == "show" && int.TryParse(commandArray[1], out stage) && stage > 0 && stage <= program.Length)
+            {
+                yield return null;
+                buttons[1].OnInteract();
+                while (inputCounter < stage - 1)
+                {
+                    yield return new WaitForSeconds(0.2f);
+                    buttons[1].OnInteract();
+                }
+                yield break;
+            }
+            else
+            {
+                yield return "sendtochaterror @{0}, invalid command.";
+                yield break;
+            }
+        }
+        if (recovering)
+        {
+            if (command == "abort")
+            {
+                yield return null;
+                while (recovering)
+                {
+                    yield return new WaitForSeconds(0.2f);
+                    buttons[1].OnInteract();
+                }
+                yield break;
+            }
+            int stage;
+            if (commandArray.Length == 2 && commandArray[0] == "show" && int.TryParse(commandArray[1], out stage) && stage > 0 && stage <= program.Length)
+            {
+                yield return null;
+                KMSelectable direction = inputCounter < stage ? buttons[1] : buttons[0];
+                while (inputCounter != stage - 1)
+                {
+                    yield return new WaitForSeconds(0.2f);
+                    direction.OnInteract();
+                }
+                yield break;
+            }
+        }
         if (commandArray.Length != 2 || commandArray[0] != "submit")
         {
             yield return "sendtochaterror @{0}, invalid command.";
@@ -206,7 +319,7 @@ public class BMachine : MonoBehaviour
         }
         for (int i = 0; i < commandArray[1].Length; i++)
         {
-            if (!validcmds.Contains(commandArray[2][i]))
+            if (!validcmds.Contains(commandArray[1][i]))
             {
                 yield return "sendtochaterror Invalid command.";
                 yield break;
@@ -216,13 +329,14 @@ public class BMachine : MonoBehaviour
         {
             for (int j = 0; j < 2; j++)
             {
-                if (command[i] == validcmds[j])
+                if (commandArray[1][i] == validcmds[j])
                 {
                     yield return null;
                     yield return new WaitForSeconds(1f);
                     buttons[j].OnInteract();
                 }
-                
+                if (inputCounter == tape.Length)
+                    yield return "awardpointsonsolve " + startingTime;
             }
         }
         yield break;
